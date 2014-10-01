@@ -21,4 +21,4 @@ Fast-paced Markdown to HTML converter written in Java.
 ### Using MarkHTML as a parser
 If you want to use MarkHTML just as a parser, then do it. The tree-structure of the elements should be easy to use for any structured markup language. When you know, which language you want to implement, just call  `Context.parse(source)` and let me see the results.
 
-[The license](LICENSE.TXT) [Developed by Mooxmirror](http://mooxmirror.github.io)
+[The license](LICENSE.TXT) | [My homepage](https://mooxmirror.github.io)
