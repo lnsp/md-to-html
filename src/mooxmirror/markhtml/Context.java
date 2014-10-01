@@ -1,3 +1,17 @@
+/*Copyright 2014 Mooxmirror
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.*/
+
 package mooxmirror.markhtml;
 
 import java.util.List;
@@ -11,7 +25,6 @@ public class Context {
 	}
 
 	public RootElement getRootElement() {
-
 		return rootElement;
 	}
 
@@ -24,6 +37,8 @@ public class Context {
 	public static Context parse(List<String> document) {
 		Context context = new Context();
 		Element activeElement = context.getRootElement();
+		int lineCount = document.size();
+		int lineIndex = 0;
 
 		for (String line : document) {
 			Context.setCurrentLine(line);
@@ -35,7 +50,6 @@ public class Context {
 					e.setText(line.replaceAll("\\s{4}", "\t"));
 					activeElement.addElement(e);
 					activeElement.addElement(new LineBreakElement());
-					System.out.println(line);
 				}
 			} else if (line.equals("")) {
 				if (activeElement.hasRootElement())
@@ -150,6 +164,11 @@ public class Context {
 					activeElement = passage;
 				}
 			}
+
+			System.out.println("Processing: "
+					+ (int) ((double) lineIndex / (double) lineCount * 100)
+					+ "%");
+			lineIndex++;
 		}
 
 		return context;
